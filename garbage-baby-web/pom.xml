@@ -17,6 +17,14 @@
             <artifactId>garbage-baby-service</artifactId>
             <version>${project.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.gb.garbage</groupId>
+            <artifactId>garbage-baby-auth</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+
     </dependencies>
 
 </project>

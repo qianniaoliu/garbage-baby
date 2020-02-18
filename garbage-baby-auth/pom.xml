@@ -9,15 +9,20 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>garbage-baby-dao</artifactId>
-
+    <artifactId>garbage-baby-auth</artifactId>
 
     <dependencies>
         <dependency>
             <groupId>com.gb.garbage</groupId>
-            <artifactId>garbage-baby-domain</artifactId>
+            <artifactId>garbage-baby-dao</artifactId>
             <version>${project.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
     </dependencies>
+
 
 </project>
