@@ -8,6 +8,7 @@
 		<module>garbage-baby-web</module>
         <module>garbage-baby-service</module>
         <module>garbage-baby-domain</module>
+		<module>garbage-baby-common</module>
 		<module>garbage-baby-auth</module>
 	</modules>
 	<parent>
