@@ -23,7 +23,7 @@
         where username = #{username,jdbcType=VARCHAR}
     </select>
 
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <delete id="deleteById" parameterType="java.lang.Integer">
         delete from user
         where id = #{id,jdbcType=INTEGER}
     </delete>
@@ -70,7 +70,7 @@
         </set>
         where id = #{id,jdbcType=INTEGER}
     </update>
-    <update id="updateByPrimaryKey" parameterType="User">
+    <update id="updateById" parameterType="User">
         update user
         set username = #{username,jdbcType=VARCHAR},
             password = #{password,jdbcType=VARCHAR}

@@ -1,6 +1,6 @@
 package com.gb.garbage.auth;
 
-import com.gb.garbage.domain.User;
+import com.gb.garbage.domain.dao.GarbageUser;
 import com.gb.garbage.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -37,7 +37,7 @@ public class AuthUserDetailsService implements UserDetailsService {
     }
 
     public String validUser(String username){
-        User user = userMapper.selectByUserName(username);
+        GarbageUser user = userMapper.selectByUserName(username);
         if(user == null){
             return null;
         }else {

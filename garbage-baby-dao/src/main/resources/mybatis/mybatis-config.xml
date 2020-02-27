@@ -23,7 +23,7 @@
         <typeAlias alias="LinkedHashMap" type="java.util.LinkedHashMap" />
         <typeAlias alias="ArrayList" type="java.util.ArrayList" />
         <typeAlias alias="LinkedList" type="java.util.LinkedList" />
-        <typeAlias alias="User" type="com.gb.garbage.domain.User"/>
+        <typeAlias alias="User" type="com.gb.garbage.domain.dao.GarbageUser"/>
     </typeAliases>
 
     <mappers>
