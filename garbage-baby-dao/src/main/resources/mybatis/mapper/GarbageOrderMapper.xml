@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gb.garbage.mapper.GarbageOrderMapper">
+	<!-- Garbage 所有查询列 -->
+	<sql id="QUERY_COLUMN_LIST">
+		<![CDATA[id, order_id as orderId, user_id as userId, rider_id as riderId, recycler_id as recyclerId, garbage_id as garbageId, weight, distance, address, main_image_url as mainImgUrl,
+          detail_image_url as detailImgUrl, appointment, estimated_amount as estimatedAmount, real_amount as realAmount, user_amount as userAmount, rider_amount as riderAmount, status, yn, created, modified]]>
+	</sql>
+
+	<!-- Garbage 查询列来源表-->
+	<sql id="QUERY_FROM_TABLE"><![CDATA[FROM garbage_order]]></sql>
+
+	<select id="selectByOrderId" parameterType="String" resultType="GarbageOrder">
+		<![CDATA[SELECT]]>
+		<include refid="QUERY_COLUMN_LIST"/>
+		<include refid="QUERY_FROM_TABLE"/>
+		<![CDATA[WHERE order_id = #{orderId}]]>
+	</select>
+
+	<!-- 更新列字段,只要不为NULL则更新,除开主键列 -->
+	<sql id="UPDATE_COLUMN_SET">
+		<set>
+			<if test="orderId != null and orderId != ''"><![CDATA[ order_id = #{orderId},]]></if>
+			<if test="userId != null and userId != ''"><![CDATA[ user_id = #{userId},]]></if>
+			<if test="riderId != null and riderId != ''"><![CDATA[ rider_id = #{riderId},]]></if>
+			<if test="recyclerId != null and recyclerId != ''"><![CDATA[ recycler_id = #{recyclerId},]]></if>
+			<if test="garbageId != null and garbageId != ''"><![CDATA[ garbage_id = #{garbageId},]]></if>
+			<if test="weight != null and weight != ''"><![CDATA[ weight = #{weight},]]></if>
+			<if test="distance != null and distance != ''"><![CDATA[ distance = #{distance},]]></if>
+			<if test="address != null and address != ''"><![CDATA[ address = #{address},]]></if>
+			<if test="mainImgUrl != null and mainImgUrl != ''"><![CDATA[ main_image_url = #{mainImgUrl},]]></if>
+			<if test="detailImgUrl != null and detailImgUrl != ''"><![CDATA[ detail_image_url = #{detailImgUrl},]]></if>
+			<if test="appointment != null and appointment != ''"><![CDATA[ appointment = #{appointment},]]></if>
+			<if test="estimatedAmount != null and estimatedAmount != ''"><![CDATA[ estimated_amount = #{estimatedAmount},]]></if>
+			<if test="realAmount != null and realAmount != ''"><![CDATA[ real_amount = #{realAmount},]]></if>
+			<if test="userAmount != null and userAmount != ''"><![CDATA[ user_amount = #{userAmount},]]></if>
+			<if test="riderAmount != null and riderAmount != ''"><![CDATA[ rider_amount = #{riderAmount},]]></if>
+			<if test="status != null and status != ''"><![CDATA[ status = #{status},]]></if>
+			<if test="yn != null and yn != ''"><![CDATA[ yn = #{yn},]]></if>
+			<if test="created != null and created != ''"><![CDATA[ created = #{created},]]></if>
+		</set>
+	</sql>
+
+	<!-- 修改记录通过主键 -->
+	<update id="updateById" parameterType="GarbageOrder" >
+		<![CDATA[UPDATE garbage_order]]>
+		<include refid="UPDATE_COLUMN_SET"/>
+		<![CDATA[WHERE id = #{id}]]>
+	</update>
+
+	<select id="selectById" parameterType="Long" resultType="GarbageOrder">
+		<![CDATA[SELECT]]>
+		<include refid="QUERY_COLUMN_LIST"/>
+		<include refid="QUERY_FROM_TABLE"/>
+		<![CDATA[WHERE id = #{id}]]>
+	</select>
+
+	<!-- 插入记录 -->
+	<insert id="insert" parameterType="GarbageOrder" >
+		<![CDATA[
+			INSERT INTO garbage_order (id,order_id,user_id,rider_id,recycler_id,garbage_id,weight,distance,address,main_image_url,detail_image_url,appointment,estimated_amount,real_amount,user_amount,rider_amount,status,yn,created)
+			VALUES (#{id},#{orderId},#{userId},#{riderId},#{recyclerId},#{garbageId},#{weight},#{distance},#{address},#{mainImgUrl},#{detailImgUrl},#{appointment},#{estimatedAmount},#{realAmount},#{userAmount},#{riderAmount},#{status} ,#{yn},now())
+		]]>
+	</insert>
+
+	<!-- 删除记录,主键IN(array) -->
+	<delete id="deleteByArrayKey" parameterType="Array" >
+		<![CDATA[DELETE FROM garbage_order WHERE id IN]]>
+		<foreach collection="array" item="id" open="(" separator="," close=")">
+			<![CDATA[#{id}]]>
+		</foreach>
+	</delete>
+
+	<!-- 删除记录,主键id-->
+	<delete id="deleteById" parameterType="Long" >
+		<![CDATA[DELETE FROM garbage_order WHERE id = #{id}]]>
+	</delete>
+</mapper>

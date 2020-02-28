@@ -29,7 +29,7 @@ public interface BaseMapper<T> {
      * @param id
      * @return
      */
-    T getById(Long id);
+    T selectById(Long id);
 
 
     /**
@@ -39,5 +39,12 @@ public interface BaseMapper<T> {
      * @return
      */
     int updateById(T record);
+
+    /**
+     * 根据id删除多条记录
+     * @param ids
+     * @return
+     */
+    int deleteByArrayKey(Long ...ids);
 
 }

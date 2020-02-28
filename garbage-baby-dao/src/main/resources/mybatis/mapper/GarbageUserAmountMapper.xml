@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gb.garbage.mapper.GarbageUserAmountMapper">
+	<!-- Garbage 所有查询列 -->
+	<sql id="QUERY_COLUMN_LIST">
+		<![CDATA[id, user_id as userId, balances, total_cash_amount as totalCashAmount, total_recharge_amount as totalRechargeAmount, total_income_amount as totalIncomeAmount, total_pay_amount as totalPayAmount, status, yn, created, modified]]>
+	</sql>
+
+	<!-- Garbage 查询列来源表-->
+	<sql id="QUERY_FROM_TABLE"><![CDATA[FROM garbage_user_amount]]></sql>
+
+	<!-- 更新列字段,只要不为NULL则更新,除开主键列 -->
+	<sql id="UPDATE_COLUMN_SET">
+		<set>
+			<if test="userId != null and userId != ''"><![CDATA[ user_id = #{userId},]]></if>
+			<if test="balances != null and balances != ''"><![CDATA[ balances = #{balances},]]></if>
+			<if test="totalCashAmount != null and totalCashAmount != ''"><![CDATA[ total_cash_amount = #{totalCashAmount},]]></if>
+			<if test="totalRechargeAmount != null and totalRechargeAmount != ''"><![CDATA[ total_recharge_amount = #{totalRechargeAmount},]]></if>
+			<if test="totalIncomeAmount != null and totalIncomeAmount != ''"><![CDATA[ total_income_amount = #{totalIncomeAmount},]]></if>
+			<if test="totalPayAmount != null and totalPayAmount != ''"><![CDATA[ total_pay_amount = #{totalPayAmount},]]></if>
+			<if test="status != null and status != ''"><![CDATA[ status = #{status},]]></if>
+			<if test="yn != null and yn != ''"><![CDATA[ yn = #{yn},]]></if>
+			<if test="created != null and created != ''"><![CDATA[ created = #{created},]]></if>
+		</set>
+	</sql>
+
+	<!-- 修改记录通过主键 -->
+	<update id="updateById" parameterType="GarbageUserAmount" >
+		<![CDATA[UPDATE garbage_user_amount]]>
+		<include refid="UPDATE_COLUMN_SET"/>
+		<![CDATA[WHERE id = #{id}]]>
+	</update>
+
+	<select id="selectById" parameterType="Long" resultType="GarbageUserAmount">
+		<![CDATA[SELECT]]>
+		<include refid="QUERY_COLUMN_LIST"/>
+		<include refid="QUERY_FROM_TABLE"/>
+		<![CDATA[WHERE id = #{id}]]>
+	</select>
+
+	<!-- 插入记录 -->
+	<insert id="insert" parameterType="GarbageUserAmount" >
+		<![CDATA[
+			INSERT INTO garbage_user_amount (id,user_id,balances,total_cash_amount,total_recharge_amount,total_income_amount,total_pay_amount,status,yn,created)
+			VALUES (#{id},#{userId},#{balances},#{totalCashAmount},#{totalRechargeAmount},#{totalIncomeAmount},#{totalPayAmount},#{status},#{yn},now())
+		]]>
+	</insert>
+
+	<!-- 删除记录,主键IN(array) -->
+	<delete id="deleteByArrayKey" parameterType="Array" >
+		<![CDATA[DELETE FROM garbage_user_amount WHERE id IN]]>
+		<foreach collection="array" item="id" open="(" separator="," close=")">
+			<![CDATA[#{id}]]>
+		</foreach>
+	</delete>
+
+	<!-- 删除记录,主键id -->
+	<delete id="deleteById" parameterType="Long" >
+		<![CDATA[DELETE FROM garbage_user_amount WHERE id = #{id}]]>
+	</delete>
+</mapper>

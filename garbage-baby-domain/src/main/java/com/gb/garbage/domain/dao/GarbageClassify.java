@@ -38,11 +38,11 @@ public class GarbageClassify {
     /**
      * 垃圾分类级别
      */
-    private Integer level;
+    private Integer classifyLevel;
     /**
      * 垃圾分类类型。1：生活垃圾；2：建筑垃圾；3：医用垃圾；4：化学垃圾；5：其他
      */
-    private Integer type;
+    private Integer classifyType;
     /**
      * 是否启用。0：无效；1：有效
      */

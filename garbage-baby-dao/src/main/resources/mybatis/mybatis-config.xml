@@ -23,10 +23,28 @@
         <typeAlias alias="LinkedHashMap" type="java.util.LinkedHashMap" />
         <typeAlias alias="ArrayList" type="java.util.ArrayList" />
         <typeAlias alias="LinkedList" type="java.util.LinkedList" />
-        <typeAlias alias="User" type="com.gb.garbage.domain.dao.GarbageUser"/>
+        <typeAlias alias="Array" type="java.lang.reflect.Array" />
+        <typeAlias alias="String" type="java.lang.String" />
+        <typeAlias alias="GarbageUser" type="com.gb.garbage.domain.dao.GarbageUser"/>
+        <typeAlias alias="Garbage" type="com.gb.garbage.domain.dao.Garbage"/>
+        <typeAlias alias="GarbageClassify" type="com.gb.garbage.domain.dao.GarbageClassify"/>
+        <typeAlias alias="GarbageOrder" type="com.gb.garbage.domain.dao.GarbageOrder"/>
+        <typeAlias alias="GarbageRecyclerOrderRecord" type="com.gb.garbage.domain.dao.GarbageRecyclerOrderRecord"/>
+        <typeAlias alias="GarbageRiderOrderRecord" type="com.gb.garbage.domain.dao.GarbageRiderOrderRecord"/>
+        <typeAlias alias="GarbageUserAddress" type="com.gb.garbage.domain.dao.GarbageUserAddress"/>
+        <typeAlias alias="GarbageUserAmount" type="com.gb.garbage.domain.dao.GarbageUserAmount"/>
+        <typeAlias alias="GarbageUserTransaction" type="com.gb.garbage.domain.dao.GarbageUserTransaction"/>
     </typeAliases>
 
     <mappers>
-        <mapper resource="mybatis/mapper/UserMapper.xml"/>
+        <mapper resource="mybatis/mapper/GarbageUserMapper.xml"/>
+        <mapper resource="mybatis/mapper/GarbageMapper.xml"/>
+        <mapper resource="mybatis/mapper/GarbageClassifyMapper.xml"/>
+        <mapper resource="mybatis/mapper/GarbageOrderMapper.xml"/>
+        <mapper resource="mybatis/mapper/GarbageRecyclerOrderRecordMapper.xml"/>
+        <mapper resource="mybatis/mapper/GarbageRiderOrderRecordMapper.xml"/>
+        <mapper resource="mybatis/mapper/GarbageUserAddressMapper.xml"/>
+        <mapper resource="mybatis/mapper/GarbageUserAmountMapper.xml"/>
+        <mapper resource="mybatis/mapper/GarbageUserTransactionMapper.xml"/>
     </mappers>
 </configuration>

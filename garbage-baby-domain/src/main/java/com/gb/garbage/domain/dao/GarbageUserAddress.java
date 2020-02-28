@@ -10,7 +10,7 @@ import java.util.Date;
  * @date 2020/2/27 18:19
  */
 @Data
-public class GarBageUserAddress {
+public class GarbageUserAddress {
     /**
      * 自增长id
      */

@@ -26,7 +26,7 @@ public class GarbageUserTransaction {
     /**
      * 交易类型: 1:用户充值 2:用户提现 3:交易支付 4:交易收入
      */
-    private Integer type;
+    private Integer transType;
     /**
      * 描述
      */

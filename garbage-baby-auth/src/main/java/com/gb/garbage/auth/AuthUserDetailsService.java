@@ -1,7 +1,7 @@
 package com.gb.garbage.auth;
 
 import com.gb.garbage.domain.dao.GarbageUser;
-import com.gb.garbage.mapper.UserMapper;
+import com.gb.garbage.mapper.GarbageUserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -22,7 +22,7 @@ import java.util.List;
 public class AuthUserDetailsService implements UserDetailsService {
 
     @Autowired(required = false)
-    private UserMapper userMapper;
+    private GarbageUserMapper userMapper;
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {

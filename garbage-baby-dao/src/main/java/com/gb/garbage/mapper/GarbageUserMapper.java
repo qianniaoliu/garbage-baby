@@ -6,7 +6,7 @@ import com.gb.garbage.domain.dao.GarbageUser;
  * @author shenlong
  * @date 2020-02-18
  */
-public interface UserMapper extends BaseMapper<GarbageUser>{
+public interface GarbageUserMapper extends BaseMapper<GarbageUser>{
 
     /**
      * 通过用户名获取密码

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gb.garbage.mapper.GarbageUserMapper">
+    <!-- Garbage 所有查询列 -->
+    <sql id="QUERY_COLUMN_LIST">
+		<![CDATA[id, user_id as userId, image_url as imageUrl, user_name as userName, password, phone_number as phoneNumber, email, nick_name as nickName,
+          contact,description, identity_card as identityCard, real_name as realName, user_type as userType, audit_status as auditStatus,
+          status, yn, created, modified]]>
+	</sql>
+
+    <!-- Garbage 查询列来源表-->
+    <sql id="QUERY_FROM_TABLE"><![CDATA[FROM garbage_user]]></sql>
+
+    <select id="selectByName" parameterType="String" resultType="GarbageUser">
+        <![CDATA[SELECT]]>
+        <include refid="QUERY_COLUMN_LIST"/>
+        <include refid="QUERY_FROM_TABLE"/>
+        <![CDATA[WHERE name_cn = #{name_cn}]]>
+    </select>
+
+    <!-- 更新列字段,只要不为NULL则更新,除开主键列 -->
+    <sql id="UPDATE_COLUMN_SET">
+        <set>
+            <if test="imageUrl != null and imageUrl != ''"><![CDATA[ image_url = #{imageUrl},]]></if>
+            <if test="nickName != null and nickName != ''"><![CDATA[ nick_name = #{nickName},]]></if>
+            <if test="userId != null and userId != ''"><![CDATA[ user_id = #{userId},]]></if>
+            <if test="userName != null and userName != ''"><![CDATA[ user_name = #{userName},]]></if>
+            <if test="password != null and password != ''"><![CDATA[ password = #{password},]]></if>
+            <if test="phoneNumber != null and phoneNumber != ''"><![CDATA[ phone_number = #{phoneNumber},]]></if>
+            <if test="email != null and email != ''"><![CDATA[ email = #{email},]]></if>
+            <if test="contact != null and contact != ''"><![CDATA[ contact = #{contact},]]></if>
+            <if test="description != null and description != ''"><![CDATA[ description = #{description},]]></if>
+            <if test="identityCard != null and identityCard != ''"><![CDATA[ identity_card = #{identityCard},]]></if>
+            <if test="realName != null and realName != ''"><![CDATA[ real_name = #{realName},]]></if>
+            <if test="userType != null and userType != ''"><![CDATA[ user_type = #{userType},]]></if>
+            <if test="auditStatus != null and auditStatus != ''"><![CDATA[ audit_status = #{auditStatus},]]></if>
+            <if test="status != null and status != ''"><![CDATA[ status = #{status},]]></if>
+            <if test="yn != null and yn != ''"><![CDATA[ yn = #{yn},]]></if>
+            <if test="created != null and created != ''"><![CDATA[ created = #{created},]]></if>
+        </set>
+    </sql>
+
+    <!-- 修改记录通过主键 -->
+    <update id="updateById" parameterType="GarbageUser" >
+        <![CDATA[UPDATE garbage_user]]>
+        <include refid="UPDATE_COLUMN_SET"/>
+        <![CDATA[WHERE id = #{id}]]>
+    </update>
+
+    <select id="selectById" parameterType="Long" resultType="GarbageUser">
+        <![CDATA[SELECT]]>
+        <include refid="QUERY_COLUMN_LIST"/>
+        <include refid="QUERY_FROM_TABLE"/>
+        <![CDATA[WHERE id = #{id}]]>
+    </select>
+
+    <!-- 插入记录 -->
+    <insert id="insert" parameterType="GarbageUser" >
+		<![CDATA[
+			INSERT INTO garbage_user (id,user_id,image_url,user_name,password,phone_number,email,nick_name,contact,description,identity_card,real_name,user_type,audit_status,status,yn,created)
+			VALUES (#{id},#{userId},#{imageUrl},#{userName},#{password},#{phoneNumber},#{email},#{nickName},#{contact},#{description},#{identityCard},#{realName},#{userType},#{auditStatus},#{status},#{yn},now())
+		]]>
+	</insert>
+
+    <!-- 删除记录,主键IN(array) -->
+    <delete id="deleteByArrayKey" parameterType="Array" >
+        <![CDATA[DELETE FROM garbage_user WHERE id IN]]>
+        <foreach collection="array" item="id" open="(" separator="," close=")">
+            <![CDATA[#{id}]]>
+        </foreach>
+    </delete>
+
+    <!-- 删除记录,主键id-->
+    <delete id="deleteById" parameterType="Long" >
+		<![CDATA[DELETE FROM garbage_user WHERE id = #{id}]]>
+	</delete>
+</mapper>
